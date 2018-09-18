@@ -3,12 +3,8 @@ const upload = require('./upload');
 
 module.exports = function(app) {
     app.get('/', function(req, res) {
-        var options = {
-            baike_num: 5
-        }
-        AipImage.getResult(res, './assets/plant.jpeg', options);
+        AipImage.getResult(res, './assets/plant.jpeg');
     });
-    app.get('/advancedGeneral', AipImage.advancedGeneral);
     //单文件上传，多文件上传参考https://github.com/expressjs/multer
     app.post('/rest/detect', upload.single('file'), function(req, res) { 
         if (req.file) {

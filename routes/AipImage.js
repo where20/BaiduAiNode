@@ -96,20 +96,10 @@ exports.imgDetect = function(apiType, image, res) {
             res.json('无法识别')
     }
 }
-exports.getResult = function(res, imgName, options) { 
+exports.getResult = function(res, imgName) { 
     var image = fs.readFileSync(imgName);
     var base64Img = new Buffer(image).toString('base64');
-    client.plantDetect(base64Img, options).then(function(result) {
-        res.json(result);
-    });
-}
-
-//通用物体识别
-exports.advancedGeneral = function(req, res) { 
-    var options = {
-        baike_num: 5
-    };
-    imgClent.advancedGeneral(req.body.base64Img, options).then(function(result) {
+    client.plantDetect(base64Img).then(function(result) {
         res.json(result);
     });
 }
